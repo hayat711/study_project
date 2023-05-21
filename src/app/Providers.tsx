@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { getPersistor } from '@rematch/persist';
 import axios from 'axios';
 import { SWRConfig } from 'swr';
+import { useRouter } from 'next/router';
 
 const persistor = getPersistor();
 
@@ -23,6 +24,9 @@ const fetcher = async (url: string) => {
 };
 
 export function Providers({ children }: { children: React.ReactNode }) {
+    // const { pathname } = useRouter();
+    const authRoutes = ['/login', '/register'];
+    // const authRoute = authRoutes.includes(pathname);
     return (
         <ThemeProvider>
             <SWRConfig

@@ -17,7 +17,7 @@ export interface User {
 
 export interface Subject {
     id: string;
-    name: string;
+    title: string;
     createdAt: Date;
     updatedAt: Date;
     resource: any;
@@ -27,12 +27,15 @@ export interface Subject {
 }
 
 export interface Assignment {
-    id: string;
-    name: string;
-    createdAt: Date;
-    updatedAt: Date;
-    resource: any;
-    owner: User;
-    subject: Subject;
+    id: string | number;
+    deadline: any;
+    title: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    resource?: any;
+    progress?: number;
+    status?: string;
+    owner?: User;
+    subject?: Subject;
 
 }

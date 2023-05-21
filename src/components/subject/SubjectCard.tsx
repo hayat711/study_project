@@ -83,7 +83,7 @@ const SubjectCard = ({ subject }: Props) => {
                 onMouseEnter={toggleShowMouse}
                 onMouseLeave={toggleHideMouse}
             >
-                <div className='text-sm font-bold mt-0 pb-2'>Current Active Subjects:</div>
+                <div className='text-sm font-bold mt-0 pb-2 text-primary-focus'>Current Active Subjects:</div>
                 <div className='text-xs flex flex-col gap-3 relative'>
                     <div className='font-bold absolute bottom-3 right-0'>
                         {/* mouse  */}

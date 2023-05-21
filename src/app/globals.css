@@ -55,3 +55,8 @@ body {
     scrollbar-color: #6b7280 #1f2937;
     
 }
+
+
+.chart-container {
+    @apply bg-base-300 w-full  h-60 max-h-60 overflow-y-auto rounded-md shadow-lg;
+}

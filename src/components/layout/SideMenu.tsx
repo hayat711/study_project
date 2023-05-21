@@ -9,6 +9,7 @@ import {
     CakeIcon,
     CheckIcon,
 } from '@heroicons/react/24/outline';
+import ThemeSelector from './ThemeSelector';
 
 type Props = {};
 
@@ -23,7 +24,7 @@ const SideMenu = (props: Props) => {
         <div className='bg-secondary  min-h-screen w-[220px] text-base-content pr-2 shadow-xl '>
             <div className='flex flex-col gap-5 pt-8 mx-2 divide-y-2 divide-secondary-focus divide-opacity-25'>
                 {/* Hamburger Menu */}
-                <div className='font-extrabold text-xl text-content-focus py-2 px-2'>Study Dashboard</div>
+                <div className='font-extrabold text-xl text-content-focus pb-2 px-2'>Study Dashboard</div>
                 <div className='pl-2'>
                     <ul className='flex flex-col gap-4 font-semibold text-sm mt-2 -mr-2'>
                         <li
@@ -75,26 +76,7 @@ const SideMenu = (props: Props) => {
                 </div>
 
                 <div className='flex flex-col gap-4 pl-2 mt- min-h-96 justify-between h-28'>
-                    {/* <div className='flex-1 mt-4'>
-                        <div className=' font-semibold text-md'>Today's Todos</div>
-                        <div className='prose py-1 ml-4'>
-                            <li className='text-xs font-light ml-2'>
-                                <span>
-                                    Physics chap-3
-                                </span>
-                            </li>
-                            <li className='text-xs font-light ml-2'>
-                                <span>
-                                    10-min exercise
-                                </span>
-                            </li>
-                            <li className='text-xs font-light ml-2'>
-                                <span>
-                                    Prepare for quiz
-                                </span>
-                            </li>
-                        </div>
-                    </div> */}
+                    <ThemeSelector />
                 </div>
                 <div className=''>
                     <div className='text-md font-semibold mt-4 ml-4'>Attendance Record</div>
