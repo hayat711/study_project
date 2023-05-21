@@ -26,8 +26,8 @@ export const data = {
         {
             label: 'Task Hours per Day',
             data: [4, 6, 2, 5, 3, 7, 1],
-            borderWidth: 2,
-            backgroundColor: '#c9416e',
+            borderWidth: 1,
+            backgroundColor: '#ec6c97',
         },
         
     ],
@@ -39,7 +39,7 @@ type Props = {
 
 const TaskChart = (props: Props) => {
     return (
-        <div>
+        <div >
             <Bar options={options} data={data} />
         </div>
     );

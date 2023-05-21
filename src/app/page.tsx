@@ -1,10 +1,12 @@
-'use client';
 import Image from 'next/image';
 import DashboardLayout from './dashboard/layout';
 import { useRouter } from 'next/navigation';
 import Head from 'next/head';
+import { redirect }  from 'next/navigation';
+
 
 export default function Home() {
+    redirect('/dashboard');
     const router = useRouter();
     return (
         <>
@@ -12,9 +14,9 @@ export default function Home() {
                 <title>Home</title>
             </Head>
             <main className='flex min-h-screen flex-col items-center justify-between cursor-pointer btn-accent'>
-                <div className='font-bold  p-2 rounded-lg' onClick={() => router.push('/dashboard')}>
+                {/* <div className='font-bold  p-2 rounded-lg' onClick={() => router.push('/dashboard')}>
                     환영합니다
-                </div>
+                </div> */}
             </main>
         </>
     );

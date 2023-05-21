@@ -28,14 +28,14 @@ const SubjectCard = ({ subject }: Props) => {
                     <div className='flex items-center justify-between px-6 pt-2 my-2 relative'>
                         <div className='text-sm text-primary-focus'>Add New</div>
                         <span className=' hover:scale-105 hover:cursor-pointer absolute top-2 left-28'>
-                            <PlusCircleIcon className='w-10 h-10 text-accent-focus' />
+                            <PlusCircleIcon className='w-10 h-10 text-accent' />
                         </span>
                     </div>
                     <div className={` text-medium font-semibold px-6 pb-3 text-primary-focus `}>Subject</div>
                 </div>
 
                 {/* Active subjects */}
-                <div className='flex h-full items-center justify-center bg-base-200 rounded-md shadow-sm hover:shadow-secondary'>
+                <div className='flex h-full items-center justify-center bg-base-200 rounded-md shadow-sm '>
                     <div className='flex p-2 font-semibold text-sm'>
                         <div className='flex flex-col justify-between items-center'>
                             <span className='items-center'>
@@ -77,7 +77,7 @@ const SubjectCard = ({ subject }: Props) => {
 
             {/* Container for another section about subjects like today's subjects */}
             <div
-                className='flex lg:col-span-2 lg:cols-start-2 flex-col items-stretch bg-base-200 p-4 rounded-lg shadow-sm hover:shadow-secondary h-[14rem] overflow-hidden overflow-y-auto
+                className='flex lg:col-span-2 lg:cols-start-2 flex-col items-stretch bg-base-200 p-4 rounded-lg shadow-md  h-[14rem] overflow-hidden overflow-y-auto
                 scrollbar-thin
             '
                 onMouseEnter={toggleShowMouse}

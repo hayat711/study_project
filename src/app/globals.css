@@ -60,3 +60,10 @@ body {
 .chart-container {
     @apply bg-base-300 w-full  h-60 max-h-60 overflow-y-auto rounded-md shadow-lg;
 }
+
+.user-item{
+    @apply flex flex-col items-stretch bg-base-200 rounded-md shadow-sm hover:shadow-secondary hover:cursor-pointer
+}
+.user-mini-card{
+    @apply flex justify-center px-2 py-3 font-semibold text-sm text-secondary
+}

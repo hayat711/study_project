@@ -10,12 +10,13 @@ import {
     CheckIcon,
 } from '@heroicons/react/24/outline';
 import ThemeSelector from './ThemeSelector';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type Props = {};
 
 const SideMenu = (props: Props) => {
     const [activeMenu, setActiveMenu] = React.useState<string>('Dashboard');
-
     const handleActiveMenu = (menu: string) => {
         setActiveMenu(menu);
     };
@@ -31,51 +32,71 @@ const SideMenu = (props: Props) => {
                             onClick={() => handleActiveMenu('Dashboard')}
                             className={`side-btn mt-2  ${activeMenu === 'Dashboard' ? 'bg-base-100 ' : ''}`}
                         >
-                            <span className='mr-'>
-                                <AcademicCapIcon className='h-6 w-6' />
-                            </span>
-                            Dashboard
+                            <Link href={`/dashboard`}>
+                                <div className='flex items-center'>
+                                    <span className='mr-2'>
+                                        <AcademicCapIcon className='h-6 w-6' />
+                                    </span>
+                                    Dashboard
+                                </div>
+                            </Link>
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Assignments')}
                             className={`side-btn ${activeMenu === 'Assignments' ? 'bg-base-100 ' : ''}`}
                         >
-                            <span className='mr-'>
-                                <ChartPieIcon className='h-6 w-6' />
-                            </span>
-                            Assignments
+                            <Link href={`/dashboard/assignment`}>
+                                <div className='text-block no-underline flex items-center'>
+                                    <span className='mr-2 '>
+                                        <ChartPieIcon className='h-6 w-6' />
+                                    </span>
+                                    Assignments
+                                </div>
+                            </Link>
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Subjects')}
                             className={`side-btn  ${activeMenu === 'Subjects' ? 'bg-base-100 ' : ''}`}
                         >
-                            <span className='mr-'>
-                                <BookOpenIcon className='h-6 w-6' />
-                            </span>
-                            Subjects
+                            <Link href={`/dashboard/subject`}>
+                                <div className='flex items-center'>
+                                    <span className='mr-2'>
+                                        <BookOpenIcon className='h-6 w-6' />
+                                    </span>
+                                    Subjects
+                                </div>
+                            </Link>
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Profile')}
                             className={`side-btn ${activeMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
                         >
-                            <span className='mr-'>
-                                <UserCircleIcon className='h-6 w-6' />
-                            </span>
-                            Profile
+                            <Link href={`/dashboard/subject`}>
+                                <div className='flex items-center'>
+                                    <span className='mr-2'>
+                                        <UserCircleIcon className='h-6 w-6' />
+                                    </span>
+                                    Profile
+                                </div>
+                            </Link>
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Settings')}
                             className={`side-btn ${activeMenu === 'Settings' ? 'bg-base-100 ' : ''}`}
                         >
-                            <span className='mr-'>
-                                <Cog6ToothIcon className='h-6 w-6' />
-                            </span>
-                            Settings
+                            <Link href={`/dashboard/subject`}>
+                                <div className='flex items-center'>
+                                    <span className='mr-2'>
+                                        <Cog6ToothIcon className='h-6 w-6' />
+                                    </span>
+                                    Settings
+                                </div>
+                            </Link>
                         </li>
                     </ul>
                 </div>
 
-                <div className='flex flex-col gap-4 pl-2 mt- min-h-96 justify-between h-28'>
+                <div className='flex flex-col gap-4 pl-2 mt-2 min-h-96 justify-between h-28'>
                     <ThemeSelector />
                 </div>
                 <div className=''>

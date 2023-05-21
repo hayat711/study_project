@@ -17,7 +17,6 @@ const DashboardPage: React.FC = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 '>
                     {/* Subject Section */}
                     <div className='md:col-span-2 xl:col-span-3'>
-                        {/* <SubjectSection /> */}
                         <div className='bg-base-200 w-full h-full rounded-lg shadow-sm'>
                             <SubjectCard />
                         </div>
@@ -25,7 +24,6 @@ const DashboardPage: React.FC = () => {
 
                     {/* Assignment Section */}
                     <div className='md:col-span-2 xl:col-span-2 md:row-span-2 xl:row-span-2'>
-                        {/* <AssignmentSection /> */}
                         <div className='bg-base-200 rounded-lg w-full h-full max-h-[465px] min-h-full overflow-hidden'>
                             <AssignmentCard />
                         </div>
@@ -33,8 +31,7 @@ const DashboardPage: React.FC = () => {
 
                     {/* User Section */}
                     <div className='md:col-span-2 xl:col-span-3'>
-                        {/* <UserSection /> */}
-                        <div className='bg-base-200 rounded-lg h-52'>
+                        <div className='bg-base-300 rounded-lg h-52'>
                             <UserCard />
                         </div>
                     </div>
