@@ -1,6 +1,3 @@
-import { themes } from '@/constants/themes';
-import { useTheme } from 'next-themes';
-import { useRouter } from 'next/router';
 import React from 'react';
 import Calendar from 'react-calendar';
 import NoticeCard from './NoticeCard';
@@ -10,7 +7,6 @@ import { BellAlertIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 type Props = {};
 
 const SidebarInfo = (props: Props) => {
-    const { theme, setTheme } = useTheme();
 
     return (
         <div className='-ml-12'>
@@ -19,12 +15,12 @@ const SidebarInfo = (props: Props) => {
                 <div className='flex justify-between gap-2 px-2 rounded-md'>
                     {/* avatar - username */}
                     <div className='flex justify-between items-center'>
-                        {/* <img
+                        <img
                             src='/rohee.gif'
                             alt='avatar'
                             className='w-12 h-12 rounded-full shadow-2xl  shadow-secondary'
-                        /> */}
-                        <UserCircleIcon className='w-12 h-12  rounded-full' />
+                        />
+                        {/* <UserCircleIcon className='w-12 h-12  rounded-full' /> */}
                         <span className='ml-2 text-xs text-base-content  font-semibold'>User name</span>
                     </div>
 

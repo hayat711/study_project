@@ -69,16 +69,32 @@ const SideMenu = (props: Props) => {
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Profile')}
-                            className={`side-btn ${activeMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
+                            className={`side-btn dropdown dropdown-right ${activeMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
                         >
-                            <Link href={`/dashboard/subject`}>
-                                <div className='flex items-center'>
-                                    <span className='mr-2'>
-                                        <UserCircleIcon className='h-6 w-6' />
-                                    </span>
-                                    Profile
-                                </div>
-                            </Link>
+                            <div className='flex items-center'>
+                                <span className='mr-2'>
+                                    <UserCircleIcon className='h-6 w-6' />
+                                </span>
+                                Profile
+                                {/* profile dropdown */}
+                                <ul
+                                    tabIndex={0}
+                                    className='dropdown-content menu p-2 shadow z-10 bg-base-100 rounded-box w-60'
+                                >
+                                    <li>
+                                        <a>Logout</a>
+                                    </li>
+                                    <li>
+                                        <a>Update Profile</a>
+                                    </li>
+                                    <li>
+                                        <a>Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a>See More</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Settings')}

@@ -7,7 +7,6 @@ import { redirect }  from 'next/navigation';
 
 export default function Home() {
     redirect('/dashboard');
-    const router = useRouter();
     return (
         <>
             <Head>

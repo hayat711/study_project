@@ -21,8 +21,8 @@ export interface Subject {
     createdAt: Date;
     updatedAt: Date;
     resource: any;
-    owner: User;
-    assignments: Assignment[];
+    owner?: User;
+    assignments?: Assignment[];
     
 }
 
