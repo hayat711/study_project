@@ -13,28 +13,39 @@ type SubjectValues = {
     status?: Status | null;
     createdAt?: Date | null;
     updatedAt?: Date | null;
-    finishDate?: Date | null;
     resource?: any | null;
+};
+
+type AssignmentValues = {
+    title: string | null;
+    description: string | null;
+    deadline: Date | null;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
+    resource?: any | null;
+    progress?: number | null;
+    status?: Status | null;
 };
 
 type Props = {};
 
-const AddSubject: React.FC = (props: Props) => {
+const AddAssignment: React.FC = (props: Props) => {
     const [ApiErrors, setAPIErrors] = useState<any>({});
     const [ApiResponse, setAPIResponse] = useState<any>('');
     const dispatch = useDispatch<Dispatch>();
 
-    const createSubjectValues: SubjectValues = {
+    const createAssignmentValues: AssignmentValues = {
         title: '',
         description: '',
         status: Status.NOT_STARTED,
         createdAt: new Date(),
         updatedAt: new Date(),
-        finishDate: new Date(),
         resource: null,
+        progress: 0,
+        deadline: new Date(),
     };
 
-    const createSubjectSchema = Yup.object().shape({
+    const createAssignmentSchema = Yup.object().shape({
         title: Yup.string().required('Title is required'),
         description: Yup.string().required('Description is required'),
         status: Yup.string().required(
@@ -43,12 +54,15 @@ const AddSubject: React.FC = (props: Props) => {
         createdAt: Yup.date(),
         updatedAt: Yup.date(),
         resource: Yup.object(),
+        progress: Yup.number(),
+        deadline: Yup.date(),
     });
 
-    const submitCreateSubject = async (values: SubjectValues, helpers: FormikHelpers<SubjectValues>) => {
+    const submitCreateAssignment = async (values: AssignmentValues, helpers: FormikHelpers<AssignmentValues>) => {
         try {
-            const res = await axios.post(`/subject`, values);
-            dispatch.subject.loadSubjectsAsync();
+            const res = await axios.post(`/assignment`, values);
+            // dispatch.assignment.loadAssignmentsAsync();
+            // TODO load the assignments in redux store
 
             setAPIResponse(res.data);
             helpers.resetForm();
@@ -61,13 +75,16 @@ const AddSubject: React.FC = (props: Props) => {
     };
 
     //TODO add enum selection option for status
+    //TODO add date picker for the deadline -->  react-date-picker
 
     return (
         <div>
-            <div className='flex mx-auto w-96'>
-                {/* modal to create a subject */}
+            <div
+                className='flex mx-auto w-96 overflow-y-auto scrollbar-thin'
+            >
+                {/* modal to create an assignment */}
                 {ApiResponse.success ? (
-                    <p className='p-4 m-8 mx-auto font-bold text-center border text-md text-success rounded-xl border-success'>
+                    <p className='p-4 m-10 mx-auto font-bold text-center border text-md text-success rounded-xl border-success'>
                         {ApiResponse.message}
                     </p>
                 ) : ApiResponse.message ? (
@@ -75,22 +92,25 @@ const AddSubject: React.FC = (props: Props) => {
                         {ApiResponse.message}
                     </p>
                 ) : null}
-                <div className='flex flex-col m-4 mx-auto '>
-                    <h1 className='text-2xl font-bold text-center pb-2'>Create Subject</h1>
+                <div
+                    className='flex flex-col m-6 mx-auto 
+            scrollbar-thin scrollbar-thumb-primary-700 scrollbar-track-primary-100 scrollbar-thumb-rounded-full '
+                >
+                    <h1 className='text-2xl font-bold text-center pb-2'>Create Assignment</h1>
                     <Formik
-                        initialValues={createSubjectValues}
-                        validationSchema={createSubjectSchema}
-                        onSubmit={submitCreateSubject}
+                        initialValues={createAssignmentValues}
+                        validationSchema={createAssignmentSchema}
+                        onSubmit={submitCreateAssignment}
                     >
-                        {({ isSubmitting, errors, touched }: FormikState<SubjectValues>) => (
+                        {({ isSubmitting, errors, touched }: FormikState<AssignmentValues>) => (
                             <Form>
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Subject title</span>
+                                            <span className='font-semibold label-text'>Assignment title</span>
                                         </label>
                                         <Field
-                                            placeholder='Enter subject title'
+                                            placeholder='Enter assignment title'
                                             type='text'
                                             name='title'
                                             className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
@@ -103,10 +123,10 @@ const AddSubject: React.FC = (props: Props) => {
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Subject description</span>
+                                            <span className='font-semibold label-text'>Assignment description</span>
                                         </label>
                                         <Field
-                                            placeholder='Enter subject description'
+                                            placeholder='Enter assignment description'
                                             type='text'
                                             name='description'
                                             className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
@@ -121,10 +141,10 @@ const AddSubject: React.FC = (props: Props) => {
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Subject status</span>
+                                            <span className='font-semibold label-text'>Assignment status</span>
                                         </label>
                                         <Field
-                                            placeholder='Enter subject status'
+                                            placeholder='Enter assignment status'
                                             type='text'
                                             name='status'
                                             className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
@@ -139,17 +159,17 @@ const AddSubject: React.FC = (props: Props) => {
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Subject resource</span>
+                                            <span className='font-semibold label-text'>Assignment deadline</span>
                                         </label>
                                         <Field
-                                            placeholder='Enter subject resource'
-                                            type='text'
-                                            name='resource'
+                                            placeholder='Pick assignment deadline'
+                                            type='date'
+                                            name='deadline'
                                             className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
                                         />
                                         <label htmlFor='' className='label'>
-                                            {errors.resource && touched.resource ? (
-                                                <ErrorField error={errors.resource} />
+                                            {errors.deadline && touched.deadline ? (
+                                                <ErrorField error={errors.deadline} />
                                             ) : null}
                                         </label>
                                     </div>
@@ -157,17 +177,17 @@ const AddSubject: React.FC = (props: Props) => {
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Finish Date</span>
+                                            <span className='font-semibold label-text'>Assignment resource</span>
                                         </label>
                                         <Field
-                                            placeholder='Pick subject finish date'
-                                            type='date'
-                                            name='finishDate'
+                                            placeholder='Enter assignment resource'
+                                            type='text'
+                                            name='resource'
                                             className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
                                         />
                                         <label htmlFor='' className='label'>
-                                            {errors.finishDate && touched.finishDate ? (
-                                                <ErrorField error={errors.finishDate} />
+                                            {errors.resource && touched.resource ? (
+                                                <ErrorField error={errors.resource} />
                                             ) : null}
                                         </label>
                                     </div>
@@ -188,4 +208,4 @@ const AddSubject: React.FC = (props: Props) => {
     );
 };
 
-export default AddSubject;
+export default AddAssignment;

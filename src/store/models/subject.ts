@@ -45,6 +45,17 @@ export const subject = createModel<RootModel>()({
         }
     },
     effects: (dispatch) => ({
+        async loadSubjectsAsync() {
+            try {
+                const res = await axios.get(`/subject`);
+                dispatch.subject.loadSubjects(res.data.subjects);
+            } catch(e) {
+                if (e instanceof AxiosError) {
+                    console.log(e.response?.data);
+                }
+                console.log('error loading subjects',e)
+            }
+        },
         async addSubjectAsync( subject: Subject, rootState) {
             try {
                 const res = await axios.post(`/subject`, {

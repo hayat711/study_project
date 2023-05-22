@@ -1,4 +1,10 @@
-
+export enum Status {
+    PENDING = 'PENDING',
+    COMPLETED = 'COMPLETED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    OVERDUE = 'OVERDUE',
+    NOT_STARTED = 'NOT_STARTED'
+}
 
 export interface User {
     id: string;
@@ -18,6 +24,7 @@ export interface User {
 export interface Subject {
     id: string;
     title: string;
+    description: string;
     createdAt: Date;
     updatedAt: Date;
     resource: any;
@@ -27,9 +34,10 @@ export interface Subject {
 }
 
 export interface Assignment {
-    id: string | number;
-    deadline: any;
+    id: string;
     title: string;
+    description: string;
+    deadline: any;
     createdAt?: Date;
     updatedAt?: Date;
     resource?: any;
