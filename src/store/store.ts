@@ -3,7 +3,7 @@ import loadingPlugin, { ExtraModelsFromLoading } from "@rematch/loading";
 import persistPlugin from "@rematch/persist";
 
 import storage from 'redux-persist/lib/storage'
-import { RootModel } from "./models";
+import { RootModel, models } from "./models";
 
 const persistConfig = {
     key: "root",
@@ -13,7 +13,7 @@ const persistConfig = {
 type FullModel = ExtraModelsFromLoading<RootModel, { type: 'full'}>
 
 export const store = init<RootModel, FullModel>({
-    models: {},
+    models,
     plugins: [loadingPlugin({ type: 'full'}), persistPlugin(persistConfig)],
 });
 

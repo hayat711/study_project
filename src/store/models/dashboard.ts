@@ -3,7 +3,7 @@ import { RootModel } from ".";
 
 export interface DashboardState {
     isUserLoggedIn?: boolean;
-    isUserPageOpen?: boolean;
+    isUserPageOpen: boolean;
     isUserPageLoading?: boolean;
 
 } 

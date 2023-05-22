@@ -12,13 +12,29 @@ import {
 import ThemeSelector from './ThemeSelector';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from '@/store/store';
 
 type Props = {};
 
 const SideMenu = (props: Props) => {
+    const [isProfileOpen, setIsProfileOpen] = React.useState<boolean>(false);
+    let dashboardState;
+    const dispatch = useDispatch<Dispatch>();
+
     const [activeMenu, setActiveMenu] = React.useState<string>('Dashboard');
     const handleActiveMenu = (menu: string) => {
         setActiveMenu(menu);
+    };
+
+    const handleProfilePage = () => {
+        dispatch.dashboard.setIsUserPageOpen(true);
+        setIsProfileOpen(true);
+    };
+
+    const toggleProfilePage = () => {
+        dispatch.dashboard.setIsUserPageOpen(!isProfileOpen);
+        setIsProfileOpen(!isProfileOpen);
     };
 
     return (
@@ -68,8 +84,11 @@ const SideMenu = (props: Props) => {
                             </Link>
                         </li>
                         <li
-                            onClick={() => handleActiveMenu('Profile')}
-                            className={`side-btn dropdown dropdown-right ${activeMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
+                            onClick={() => {
+                                handleActiveMenu('Profile');
+                                toggleProfilePage();
+                            }}
+                            className={`side-btn  ${activeMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
                         >
                             <div className='flex items-center'>
                                 <span className='mr-2'>
@@ -77,23 +96,6 @@ const SideMenu = (props: Props) => {
                                 </span>
                                 Profile
                                 {/* profile dropdown */}
-                                <ul
-                                    tabIndex={0}
-                                    className='dropdown-content menu p-2 shadow z-10 bg-base-100 rounded-box w-60'
-                                >
-                                    <li>
-                                        <a>Logout</a>
-                                    </li>
-                                    <li>
-                                        <a>Update Profile</a>
-                                    </li>
-                                    <li>
-                                        <a>Change Password</a>
-                                    </li>
-                                    <li>
-                                        <a>See More</a>
-                                    </li>
-                                </ul>
                             </div>
                         </li>
                         <li
