@@ -1,6 +1,9 @@
 //@ts-nocheck
+import { Dispatch } from '@/store/store';
 import { Assignment } from '@/utils/types.dt';
+import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 type Props = {
     assignment: Assignment;
@@ -8,6 +11,9 @@ type Props = {
 };
 
 const AssignmentDetail = ({ assignment }: Props) => {
+    const dispatch = useDispatch<Dispatch>();
+    const router = useRouter();
+    
     return (
         <div>
             <div className='mb-4 max-h-full max-w-full '>
@@ -37,9 +43,17 @@ const AssignmentDetail = ({ assignment }: Props) => {
                         </span>
                         min
                     </div>
-    
                 </div>
-                <div className="text-sm pb-1 opacity-0"> keep going</div>
+                <div
+                    onClick={() => {
+                        router.push('/dashboard/assignment');
+                        dispatch.dashboard.setActiveMenu('Assignments');
+                    }}
+                    className='cursor-pointer absolute bottom-0 z-10 right-4 text-xs btn btn-xs normal-case btn-ghost rounded-2xl'
+                >
+                    See All
+                </div>
+                <div className='text-sm pb-1 opacity-0'> keep going</div>
             </div>
         </div>
     );

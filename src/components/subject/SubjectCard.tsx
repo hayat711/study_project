@@ -5,6 +5,8 @@ import {XCircleIcon} from '@heroicons/react/24/outline'
 import { Subject } from '@/utils/types.dt';
 import SubjectDetails from './SubjectDetails';
 import AddSubject from './AddSubject';
+import SubjectSwiper from './SubjectSwiper';
+import subjects from '@/constants/subjects';
 
 type Props = {
     subject?: Subject;
@@ -91,7 +93,8 @@ const SubjectCard = ({ subject }: Props) => {
                     <div className='text-xs flex flex-col gap-3'>
                         <SubjectDetails />
                         <SubjectDetails />
-                        <SubjectDetails />
+                        <SubjectSwiper subjects={subjects} />
+
                     </div>
                 </div>
             </div>

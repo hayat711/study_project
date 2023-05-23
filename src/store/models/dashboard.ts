@@ -5,6 +5,7 @@ export interface DashboardState {
     isUserLoggedIn?: boolean;
     isUserPageOpen: boolean;
     isUserPageLoading?: boolean;
+    activeMenu: string;
 
 } 
 
@@ -12,6 +13,7 @@ export const initialState: DashboardState = {
     isUserLoggedIn: false,
     isUserPageOpen: false,
     isUserPageLoading: false,
+    activeMenu: 'Dashboard',
 
 }
 
@@ -38,6 +40,12 @@ export const dashboard = createModel<RootModel>()({
                 isUserLoggedIn: payload,
             }
         },
+        setActiveMenu(state, payload: string) {
+            return {
+                ...state,
+                activeMenu: payload,
+            }
+        }
         
     },
     effects: (dispatch) => ({}),

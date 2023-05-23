@@ -12,24 +12,18 @@ import {
 import ThemeSelector from './ThemeSelector';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
-import { Dispatch } from '@/store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch, RootState } from '@/store/store';
 
 type Props = {};
 
 const SideMenu = (props: Props) => {
     const [isProfileOpen, setIsProfileOpen] = React.useState<boolean>(false);
-    let dashboardState;
+    const { activeMenu: currentMenu } = useSelector((state: RootState) => state.dashboard);
     const dispatch = useDispatch<Dispatch>();
 
-    const [activeMenu, setActiveMenu] = React.useState<string>('Dashboard');
     const handleActiveMenu = (menu: string) => {
-        setActiveMenu(menu);
-    };
-
-    const handleProfilePage = () => {
-        dispatch.dashboard.setIsUserPageOpen(true);
-        setIsProfileOpen(true);
+        dispatch.dashboard.setActiveMenu(menu);
     };
 
     const toggleProfilePage = () => {
@@ -46,7 +40,7 @@ const SideMenu = (props: Props) => {
                     <ul className='flex flex-col gap-4 font-semibold text-sm mt-2 -mr-2'>
                         <li
                             onClick={() => handleActiveMenu('Dashboard')}
-                            className={`side-btn mt-2  ${activeMenu === 'Dashboard' ? 'bg-base-100 ' : ''}`}
+                            className={`side-btn mt-2  ${currentMenu === 'Dashboard' ? 'bg-base-100 ' : ''}`}
                         >
                             <Link href={`/dashboard`}>
                                 <div className='flex items-center'>
@@ -59,7 +53,7 @@ const SideMenu = (props: Props) => {
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Assignments')}
-                            className={`side-btn ${activeMenu === 'Assignments' ? 'bg-base-100 ' : ''}`}
+                            className={`side-btn ${currentMenu === 'Assignments' ? 'bg-base-100 ' : ''}`}
                         >
                             <Link href={`/dashboard/assignment`}>
                                 <div className='text-block no-underline flex items-center'>
@@ -72,7 +66,7 @@ const SideMenu = (props: Props) => {
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Subjects')}
-                            className={`side-btn  ${activeMenu === 'Subjects' ? 'bg-base-100 ' : ''}`}
+                            className={`side-btn  ${currentMenu === 'Subjects' ? 'bg-base-100 ' : ''}`}
                         >
                             <Link href={`/dashboard/subject`}>
                                 <div className='flex items-center'>
@@ -88,7 +82,7 @@ const SideMenu = (props: Props) => {
                                 handleActiveMenu('Profile');
                                 toggleProfilePage();
                             }}
-                            className={`side-btn  ${activeMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
+                            className={`side-btn  ${currentMenu === 'Profile' ? 'bg-base-100 ' : ''}`}
                         >
                             <div className='flex items-center'>
                                 <span className='mr-2'>
@@ -100,7 +94,7 @@ const SideMenu = (props: Props) => {
                         </li>
                         <li
                             onClick={() => handleActiveMenu('Settings')}
-                            className={`side-btn ${activeMenu === 'Settings' ? 'bg-base-100 ' : ''}`}
+                            className={`side-btn ${currentMenu === 'Settings' ? 'bg-base-100 ' : ''}`}
                         >
                             <Link href={`/dashboard/subject`}>
                                 <div className='flex items-center'>

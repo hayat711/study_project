@@ -37,11 +37,7 @@ const AssignmentCard = () => {
                 </div>
                 <TaskSwiper assignments={assignments} />
                 
-                <div 
-                onClick={() => router.push('/dashboard/assignment')}
-                className='absolute bottom-9 z-10 right-4 text-xs btn btn-xs normal-case btn-ghost rounded-2xl'>
-                    See All
-                </div>
+               
 
                 <div className='flex justify-center'>
                     <label htmlFor='create-assignment'>

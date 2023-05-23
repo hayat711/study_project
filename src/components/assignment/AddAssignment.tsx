@@ -129,7 +129,7 @@ const AddAssignment: React.FC = (props: Props) => {
                                             placeholder='Enter assignment description'
                                             type='text'
                                             name='description'
-                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
+                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted  placeholder-sm`}
                                         />
                                         <label htmlFor='' className='label'>
                                             {errors.description && touched.description ? (
@@ -147,7 +147,7 @@ const AddAssignment: React.FC = (props: Props) => {
                                             placeholder='Enter assignment status'
                                             type='text'
                                             name='status'
-                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
+                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted placeholder-xs `}
                                         />
                                         <label htmlFor='' className='label'>
                                             {errors.status && touched.status ? (
