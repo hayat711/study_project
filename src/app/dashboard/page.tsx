@@ -3,6 +3,8 @@ import AssignmentCard from '@/components/assignment/AssignmentCard';
 import AttendanceChart from '@/components/charts/AttendanceChart';
 import BarChartCard from '@/components/charts/BarChart';
 import GroupStudyChart from '@/components/charts/GroupStudyChart';
+import DemoNivoBar from '@/components/charts/NivoBar';
+import NivoBar from '@/components/charts/NivoBar';
 import ProgressBar from '@/components/charts/ProgressBar';
 import SelfStudy from '@/components/charts/SelfStudy';
 import TaskChart from '@/components/charts/TaskChart';
@@ -60,6 +62,7 @@ const DashboardPage: React.FC = () => {
                     <div className='md:col-span-2 lg:col-span-2 xl:col-span-2'>
                         <div className='chart-container max-h-60 overflow-none'>
                             <TaskChart />
+                            {/* <DemoNivoBar /> */}
                         </div>
                     </div>
                 </div>

@@ -93,7 +93,7 @@ const AddAssignment: React.FC = (props: Props) => {
                     </p>
                 ) : null}
                 <div
-                    className='flex flex-col m-6 mx-auto 
+                    className='flex flex-col m-4 mx-auto 
             scrollbar-thin scrollbar-thumb-primary-700 scrollbar-track-primary-100 scrollbar-thumb-rounded-full '
                 >
                     <h1 className='text-2xl font-bold text-center pb-2'>Create Assignment</h1>

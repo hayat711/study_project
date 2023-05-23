@@ -19,6 +19,7 @@
     "@types/react-dom": "18.2.4",
     "axios": "^1.4.0",
     "chart.js": "^4.3.0",
+    "d3-color": "^3.1.0",
     "daisyui": "^2.51.6",
     "faker": "^6.6.6",
     "formik": "^2.2.9",
@@ -31,6 +32,7 @@
     "react-redux": "^8.0.5",
     "recharts": "^2.6.2",
     "redux-persist": "^6.0.0",
+    "swiper": "^9.3.2",
     "swr": "^2.1.5",
     "tailwind-scrollbar": "^3.0.4",
     "tailwind-scrollbar-hide": "^1.1.7",
@@ -38,6 +40,7 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
+    "@nivo/bar": "^0.83.0",
     "@types/axios": "^0.14.0",
     "@types/faker": "^6.6.9",
     "autoprefixer": "^10.4.14",

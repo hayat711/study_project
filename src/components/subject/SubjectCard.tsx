@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { CheckBadgeIcon, PlusCircleIcon, BookOpenIcon, DocumentCheckIcon ,XCircleIcon } from '@heroicons/react/24/solid';
-
+import { CheckBadgeIcon, PlusCircleIcon, BookOpenIcon, DocumentCheckIcon , } from '@heroicons/react/24/solid';
+import {XCircleIcon} from '@heroicons/react/24/outline'
 import { Subject } from '@/utils/types.dt';
 import SubjectDetails from './SubjectDetails';
 import AddSubject from './AddSubject';
@@ -30,7 +30,7 @@ const SubjectCard = ({ subject }: Props) => {
                             <div className='text-sm text-primary-focus'>Add New</div>
                             <span className=' hover:scale-105 hover:cursor-pointer absolute top-2 left-28'>
                                 <label htmlFor='create-subject' className='cursor-pointer'>
-                                    <PlusCircleIcon className='w-10 h-10 text-accent' />
+                                    <PlusCircleIcon className='w-10 h-10 text-accent hover:text-accent-focus' />
                                 </label>
                             </span>
                         </div>
