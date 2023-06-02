@@ -60,7 +60,7 @@ export const subject = createModel<RootModel>()({
     effects: (dispatch) => ({
         async loadSubjectsAsync() {
             try {
-                const res = await axios.get(`/subject`);
+                const res = await axios.get(`/detail/getAllDetails`);
                 dispatch.subject.loadSubjects(res.data.subjects);
             } catch (e) {
                 if (e instanceof AxiosError) {
@@ -71,7 +71,7 @@ export const subject = createModel<RootModel>()({
         },
         async addSubjectAsync(subject: Subject, rootState) {
             try {
-                const res = await axios.post(`/subject`, {
+                const res = await axios.post(`/detail/register`, {
                     data: {
                         subject: subject,
                     },

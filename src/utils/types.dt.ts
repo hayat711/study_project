@@ -1,49 +1,35 @@
 export enum Status {
-    PENDING = 'PENDING',
-    COMPLETED = 'COMPLETED',
-    IN_PROGRESS = 'IN_PROGRESS',
-    OVERDUE = 'OVERDUE',
-    NOT_STARTED = 'NOT_STARTED'
+    PENDING = 'pending',
+    COMPLETED = 'completed',
+    IN_PROGRESS = 'in_progress',
+    NOT_STARTED = 'not_started',
 }
 
 export interface User {
     id: string;
-    name: string;
-    email: string;
     username: string;
-    password: string;
-    avatar: string;
-    createdAt: Date;
-    updatedAt: Date;
+
     subjects: Subject[];
     assignments: Assignment[];
-
 }
-
 
 export interface Subject {
     id: string;
     title: string;
-    description: string;
+    studyMethod?: string;
     createdAt: Date;
     updatedAt: Date;
     resource: any;
     owner?: User;
     assignments?: Assignment[];
-    
 }
 
 export interface Assignment {
     id: string;
     title: string;
-    description: string;
-    deadline: any;
-    createdAt?: Date;
-    updatedAt?: Date;
-    resource?: any;
+    deadline: Date;
     progress?: number;
     status?: string;
     owner?: User;
     subject?: Subject;
-
 }

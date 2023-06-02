@@ -73,9 +73,9 @@ const UserCard = () => {
                     </div>
                 )}
 
-                {/* <div className="absolute grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-3 md:w-full md:h-full bg-primary-focus bg-opacity-30 backdrop-blur-[4px]  p-2 max-h-28 bottom-0">
+                <div className="absolute grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-3 md:w-full md:h-full bg-primary-focus bg-opacity-20 backdrop-blur-[4px]  p-2 max-h-28 bottom-0">
                     <LockClosedIcon className=' w-10 h-10 col-start-2 text-red-600 text-3-opacity-75 mt-3  ml-16' />
-                </div> */}
+                </div>
             </div>
         </div>
     );

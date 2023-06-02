@@ -1,3 +1,5 @@
+'use client';
+
 import AssignmentDetail from '@/components/assignment/AssignmentDetail';
 import { assignments } from '@/constants/assignments';
 import { RootState } from '@/store/store';
@@ -17,6 +19,7 @@ const page = async (props: Props) => {
     return (
         <div>
             <div className='grid grid-cols-1 grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
+                <div className='font-semibold mx-12 my-4'>Assignments List</div>
                 {assignments.map((assignment) => (
                     <AssignmentDetail key={assignment.id} assignment={assignment} />
                 ))}

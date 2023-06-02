@@ -5,16 +5,21 @@ import { XCircleIcon , PlusCircleIcon } from '@heroicons/react/24/outline';
 import AddAssignment from './AddAssignment';
 import TaskSwiper from './TaskSwiper';
 import { useRouter } from 'next/navigation';
-import { assignments } from '@/constants/assignments';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const AssignmentCard = () => {
     const router = useRouter();
     
+    let assignmentState = useSelector((state : RootState) => state.assignment);
+
+    const { assignments } = assignmentState;
+
     // Demo task statistics
     const taskStats = {
-        totalTasks: 10,
-        completedTasks: 6,
-        pendingTasks: 4,
+        totalTasks: assignments.length ? assignments.length : 0,
+        completedTasks: assignments.length ? assignments.length - 2 : 0,
+        pendingTasks: assignments.length ? 2 : 0,
     };
 
     return (

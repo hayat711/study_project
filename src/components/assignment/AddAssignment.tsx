@@ -7,18 +7,9 @@ import { useDispatch } from 'react-redux';
 import { Dispatch } from '@/store/store';
 import ErrorField from '../error/ErrorField';
 
-type SubjectValues = {
-    title: string | null;
-    description?: string | null;
-    status?: Status | null;
-    createdAt?: Date | null;
-    updatedAt?: Date | null;
-    resource?: any | null;
-};
-
 type AssignmentValues = {
     title: string | null;
-    description: string | null;
+    description?: string | null;
     deadline: Date | null;
     createdAt?: Date | null;
     updatedAt?: Date | null;
@@ -40,7 +31,6 @@ const AddAssignment: React.FC = (props: Props) => {
         status: Status.NOT_STARTED,
         createdAt: new Date(),
         updatedAt: new Date(),
-        resource: null,
         progress: 0,
         deadline: new Date(),
     };
@@ -53,16 +43,17 @@ const AddAssignment: React.FC = (props: Props) => {
         ),
         createdAt: Yup.date(),
         updatedAt: Yup.date(),
-        resource: Yup.object(),
         progress: Yup.number(),
         deadline: Yup.date(),
     });
 
     const submitCreateAssignment = async (values: AssignmentValues, helpers: FormikHelpers<AssignmentValues>) => {
         try {
-            const res = await axios.post(`/assignment`, values);
-            // dispatch.assignment.loadAssignmentsAsync();
-            // TODO load the assignments in redux store
+            const status = values.status?.toString() || '';
+
+            console.log('here is assignment values --> ', values.title, values.status);
+            const res = await axios.post(`/assignment/updateWeeklyAssignment`, {...values, status});
+            dispatch.assignment.loadAssignmentsAsync();
 
             setAPIResponse(res.data);
             helpers.resetForm();
@@ -74,14 +65,9 @@ const AddAssignment: React.FC = (props: Props) => {
         }
     };
 
-    //TODO add enum selection option for status
-    //TODO add date picker for the deadline -->  react-date-picker
-
     return (
         <div>
-            <div
-                className='flex mx-auto w-96 overflow-y-auto scrollbar-thin'
-            >
+            <div className='flex mx-auto w-96 overflow-y-auto scrollbar-thin'>
                 {/* modal to create an assignment */}
                 {ApiResponse.success ? (
                     <p className='p-4 m-10 mx-auto font-bold text-center border text-md text-success rounded-xl border-success'>
@@ -120,24 +106,7 @@ const AddAssignment: React.FC = (props: Props) => {
                                         </label>
                                     </div>
                                 </div>
-                                <div>
-                                    <div className='form-control'>
-                                        <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Assignment description</span>
-                                        </label>
-                                        <Field
-                                            placeholder='Enter assignment description'
-                                            type='text'
-                                            name='description'
-                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted  placeholder-sm`}
-                                        />
-                                        <label htmlFor='' className='label'>
-                                            {errors.description && touched.description ? (
-                                                <ErrorField error={errors.description} />
-                                            ) : null}
-                                        </label>
-                                    </div>
-                                </div>
+
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
@@ -174,24 +143,7 @@ const AddAssignment: React.FC = (props: Props) => {
                                         </label>
                                     </div>
                                 </div>
-                                <div>
-                                    <div className='form-control'>
-                                        <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Assignment resource</span>
-                                        </label>
-                                        <Field
-                                            placeholder='Enter assignment resource'
-                                            type='text'
-                                            name='resource'
-                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
-                                        />
-                                        <label htmlFor='' className='label'>
-                                            {errors.resource && touched.resource ? (
-                                                <ErrorField error={errors.resource} />
-                                            ) : null}
-                                        </label>
-                                    </div>
-                                </div>
+
                                 <button
                                     type='submit'
                                     disabled={isSubmitting}

@@ -44,25 +44,22 @@ const DashboardPage: React.FC = () => {
                         {/* component to show the overall progress of all task related to group-study*/}
 
                         <div className='chart-container flex flex-col'>
-                            {/* <ProgressBar /> */}
                             <GroupStudyChart />
                         </div>
                     </div>
 
-                    {/* مکان برای آمار و ارقام  */}
+                    {/* */}
                     <div className='md:col-span-1 lg:col-span-1 xl:col-span-1'>
                         {/* component to show the overall progress of all task related with self-studying */}
                         <div className='chart-container flex flex-col'>
-                            {/* <AttendanceChart /> */}
                             <SelfStudy />
                         </div>
                     </div>
 
-                    {/* Attendance CHart using line Chart*/}
+                    {/* Attendance Chart using line Chart*/}
                     <div className='md:col-span-2 lg:col-span-2 xl:col-span-2'>
                         <div className='chart-container max-h-60 overflow-none'>
                             <TaskChart />
-                            {/* <DemoNivoBar /> */}
                         </div>
                     </div>
                 </div>

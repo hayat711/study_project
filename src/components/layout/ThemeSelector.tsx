@@ -60,6 +60,7 @@ const ThemeSelector: React.FC = ({ style }: Props) => {
                         />
                         Pastel
                     </label>
+                    
                 </div>
             </div>
         </div>

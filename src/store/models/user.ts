@@ -6,11 +6,13 @@ import axios, { AxiosError } from 'axios';
 export interface UserState {
     user: User | null;
     authenticated: boolean;
+    attendance: number;
 }
 
 const initialState: UserState = {
     user: null,
     authenticated: false,
+    attendance: 0,
 };
 
 export const user = createModel<RootModel>()({
@@ -52,12 +54,40 @@ export const user = createModel<RootModel>()({
             }
         },
 
-        async register({ email, username, password }) {
+        async getTotalMembers() {
             try {
-                const { data } = await axios.post('/api/register', {
-                    email,
+                const { data } = await axios.get('/member-count');
+                return data;
+            } catch (error) {
+                console.error(error);
+                let axiosError: AxiosError;
+                if (error instanceof AxiosError) {
+                    axiosError = error.response?.data;
+                    return axiosError;
+                }
+                return error;
+            }
+        },
+
+        async getAttendance() {
+            try {
+                const { data } = await axios.get('/attendance-count');
+                return data;
+            } catch (error) {
+                console.error(error);
+                let axiosError: AxiosError;
+                if (error instanceof AxiosError) {
+                    axiosError = error.response?.data;
+                    return axiosError;
+                }
+                return error;
+            }
+        },
+
+        async register({ username }) {
+            try {
+                const { data } = await axios.post('/member-create', {
                     username,
-                    password,
                 });
                 dispatch.user.setUser(data.user);
                 return data;

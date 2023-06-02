@@ -9,7 +9,7 @@ import { SWRConfig } from 'swr';
 
 const persistor = getPersistor();
 
-axios.defaults.baseURL = 'http://localhost:8080/api';
+axios.defaults.baseURL = 'http://localhost:8080/';
 axios.defaults.withCredentials = true;
 
 const fetcher = async (url: string) => {

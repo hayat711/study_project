@@ -9,12 +9,9 @@ import ErrorField from '../error/ErrorField';
 
 type SubjectValues = {
     title: string | null;
-    description?: string | null;
+    studyMethod?: string | null;
     status?: Status | null;
-    createdAt?: Date | null;
-    updatedAt?: Date | null;
     finishDate?: Date | null;
-    resource?: any | null;
 };
 
 type Props = {};
@@ -26,28 +23,24 @@ const AddSubject: React.FC = (props: Props) => {
 
     const createSubjectValues: SubjectValues = {
         title: '',
-        description: '',
+        studyMethod: '',
         status: Status.NOT_STARTED,
-        createdAt: new Date(),
-        updatedAt: new Date(),
         finishDate: new Date(),
-        resource: null,
     };
 
     const createSubjectSchema = Yup.object().shape({
         title: Yup.string().required('Title is required'),
-        description: Yup.string().required('Description is required'),
+        studyMethod: Yup.string(),
         status: Yup.string().required(
             'Status is required & should be either NOT_STARTED, IN_PROGRESS, COMPLETED, PENDING, or CANCELLED'
         ),
-        createdAt: Yup.date(),
-        updatedAt: Yup.date(),
-        resource: Yup.object(),
     });
 
     const submitCreateSubject = async (values: SubjectValues, helpers: FormikHelpers<SubjectValues>) => {
         try {
-            const res = await axios.post(`/subject`, values);
+            console.log('the subject values --->', values.title, values.status, values.studyMethod);
+            const status = values.status?.toString() || '';
+            const res = await axios.post(`/subject/register`, {...values, status});
             dispatch.subject.loadSubjectsAsync();
 
             setAPIResponse(res.data);
@@ -59,8 +52,6 @@ const AddSubject: React.FC = (props: Props) => {
             }
         }
     };
-
-    //TODO add enum selection option for status
 
     return (
         <div>
@@ -103,17 +94,17 @@ const AddSubject: React.FC = (props: Props) => {
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Subject description</span>
+                                            <span className='font-semibold label-text'>Study Method</span>
                                         </label>
                                         <Field
-                                            placeholder='Enter subject description'
+                                            placeholder='Enter study method'
                                             type='text'
-                                            name='description'
+                                            name='studyMethod'
                                             className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
                                         />
                                         <label htmlFor='' className='label'>
-                                            {errors.description && touched.description ? (
-                                                <ErrorField error={errors.description} />
+                                            {errors.studyMethod && touched.studyMethod ? (
+                                                <ErrorField error={errors.studyMethod} />
                                             ) : null}
                                         </label>
                                     </div>
@@ -136,24 +127,7 @@ const AddSubject: React.FC = (props: Props) => {
                                         </label>
                                     </div>
                                 </div>
-                                <div>
-                                    <div className='form-control'>
-                                        <label htmlFor='' className='label'>
-                                            <span className='font-semibold label-text'>Subject resource</span>
-                                        </label>
-                                        <Field
-                                            placeholder='Enter subject resource'
-                                            type='text'
-                                            name='resource'
-                                            className={`w-full p-3 transition duration-200 rounded input-bordered input border-dotted`}
-                                        />
-                                        <label htmlFor='' className='label'>
-                                            {errors.resource && touched.resource ? (
-                                                <ErrorField error={errors.resource} />
-                                            ) : null}
-                                        </label>
-                                    </div>
-                                </div>
+
                                 <div>
                                     <div className='form-control'>
                                         <label htmlFor='' className='label'>

@@ -36,12 +36,12 @@ body {
     @apply flex flex-col w-60 h-60  justify-between bg-purple-200 bg-opacity-80 rounded-lg ml-2 space-y-1 shadow-lg hover:shadow-rose-500;
 }
 
-[data-theme='dark']{
+/* [data-theme='dark']{
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
     --base-700: #09111b;
-}
+} */
 
 .side-btn{
     @apply py-2 px-6 flex items-center gap-2 cursor-pointer hover:bg-secondary-focus hover:transform hover:translate-x-[-4px]  rounded-bl-xl rounded-tl-xl hover:shadow-2xl hover:scale-105;

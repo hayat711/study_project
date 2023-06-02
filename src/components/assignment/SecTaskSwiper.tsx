@@ -1,7 +1,8 @@
+//@ts-nocheck
 'use client';
 import React, { useRef, useState } from 'react';
-import { Assignment } from '@/utils/types.dt';
 import AssignmentDetail from './AssignmentDetail';
+import { assignments } from '../../constants/assignments';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -12,14 +13,12 @@ import 'swiper/css/effect-fade';
 
 // import required modules
 import { Autoplay, Pagination, EffectFade } from 'swiper';
-type Props = {
-    assignments: Assignment[];
-};
 
-export default function TaskSwiper({ assignments }: Props) {
+export default function TaskSwiper() {
     return (
         <>
             <Swiper
+                // effect={'fade'}
                 grabCursor={true}
                 pagination={{ clickable: true, dynamicBullets: false }}
                 autoplay={{ delay: 5000 }}

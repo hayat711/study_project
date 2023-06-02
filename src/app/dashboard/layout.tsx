@@ -17,14 +17,13 @@ const DashboardLayout = ({ children }: Props) => {
             <div className='flex min-h-screen flex-col'>
                 <div className='flex flex-col sm:flex-row gap-3'>
                     {/* sidebar */}
-                    <div className='w-full sm:w-[200px] min-h-full max-h-screen'>
-                        {/* <Sidebar /> */}
+                    <div className='w-full hidden md:block sm:w-[200px] min-h-full max-h-screen'>
                         <SideMenu />
                     </div>
                     {/* main dashboard */}
                     <div className='flex w-full bg-base-300 max-h-screen sm:w-8/12 min-h-screen'>{children}</div>
 
-                    <div className='flex w-full md:w-2/12 min-h-screen max-h-screen sm:hidden md:block right-0 top-0 fixed'>
+                    <div className='flex w-full md:w-2/12 min-h-screen max-h-screen sm:hidden xs:hidden md:block right-0 top-0 fixed'>
                         <SidebarInfo />
                     </div>
                 </div>

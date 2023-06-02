@@ -1,8 +1,11 @@
+import { RootState } from '@/store/store';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 type Props = {};
 
 const NoticeCard = (props: Props) => {
+
   const notices = [
     {
       id: 1,

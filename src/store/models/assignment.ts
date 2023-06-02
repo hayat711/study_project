@@ -89,7 +89,7 @@ export const assignment = createModel<RootModel>()({
     effects: (dispatch) => ({
         async loadAssignmentsAsync() {
             try {
-                const res = await axios.get(`/assignment`);
+                const res = await axios.get(`/assignment/read`);
                 dispatch.assignment.loadAssignments(res.data.assignments);
             } catch (e) {
                 if (e instanceof AxiosError) {
@@ -100,7 +100,7 @@ export const assignment = createModel<RootModel>()({
         },
         async addAssignmentAsync(assignment: Assignment, rootState) {
             try {
-                const res = await axios.post(`/assignment`, assignment);
+                const res = await axios.post(`/assignment/updateWeeklyAssignment`, assignment);
                 dispatch.assignment.addAssignment(res.data.assignment);
             } catch (e) {
                 if (e instanceof AxiosError) {

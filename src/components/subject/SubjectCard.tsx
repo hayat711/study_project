@@ -1,26 +1,29 @@
 'use client';
 import React from 'react';
-import { CheckBadgeIcon, PlusCircleIcon, BookOpenIcon, DocumentCheckIcon , } from '@heroicons/react/24/solid';
-import {XCircleIcon} from '@heroicons/react/24/outline'
+import { CheckBadgeIcon, PlusCircleIcon, BookOpenIcon, DocumentCheckIcon } from '@heroicons/react/24/solid';
+import { XCircleIcon } from '@heroicons/react/24/outline';
 import { Subject } from '@/utils/types.dt';
 import SubjectDetails from './SubjectDetails';
 import AddSubject from './AddSubject';
 import SubjectSwiper from './SubjectSwiper';
 import subjects from '@/constants/subjects';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 type Props = {
     subject?: Subject;
 };
 
 const SubjectCard = ({ subject }: Props) => {
-    const [showMouse, setShowMouse] = React.useState<boolean>(false);
+    let subjectState = useSelector((state: RootState) => state.subject);
+    const { subjects } = subjectState;
 
-    const toggleShowMouse = () => {
-        setShowMouse(true);
-    };
-    const toggleHideMouse = () => {
-        setShowMouse(false);
-    };
+    let assignmentState = useSelector((state: RootState) => state.assignment);
+    const { assignments } = assignmentState;
+
+    const totalActiveSubject = subjects.length;
+    const totalActiveAssignment = assignments.length;
+
     return (
         <>
             <div className='grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-3 md:w-full md:h-full bg-base-300 rounded-lg shadow-sm p-2'>
@@ -49,14 +52,18 @@ const SubjectCard = ({ subject }: Props) => {
                                         <span>Active</span>
                                     </span>
                                 </span>
-                                <span className='font-bold text-lg text-secondary-focus'>4 </span>
+                                <span className='font-bold text-lg text-secondary-focus'>
+                                    {totalActiveSubject ? totalActiveSubject : '0'}{' '}
+                                </span>
                                 <span className='items-center'>
                                     <span className='flex items-center gap-1'>
                                         <CheckBadgeIcon className='w-4 h-4 text-accent-focus' />
                                         <span>Done</span>
                                     </span>
                                 </span>
-                                <span className='font-bold text-lg text-secondary-focus'>2</span>
+                                <span className='font-bold text-lg text-secondary-focus'>
+                                    {totalActiveSubject ? totalActiveSubject : '0'}
+                                </span>
                             </div>
                         </div>
                         <div className='flex p-2 font-semibold text-sm'>
@@ -67,17 +74,20 @@ const SubjectCard = ({ subject }: Props) => {
                                         <span>Tasks</span>
                                     </span>
                                 </span>
-                                <span className='font-bold text-lg text-secondary-focus'>8 </span>
+                                <span className='font-bold text-lg text-secondary-focus'>
+                                    {totalActiveAssignment ? totalActiveAssignment : '0'}
+                                </span>
                                 <span className='items-center'>
                                     <span className='flex items-center gap-1'>
                                         <CheckBadgeIcon className='w-4 h-4 text-accent-focus' />
                                         <span>Done</span>
                                     </span>
                                 </span>
-                                <span className='font-bold text-lg text-secondary-focus'>5 </span>
+                                <span className='font-bold text-lg text-secondary-focus'>
+                                    {totalActiveAssignment ? totalActiveAssignment : '0'}{' '}
+                                </span>
                             </div>
                         </div>
-                
                     </div>
                 </div>
 
@@ -86,16 +96,15 @@ const SubjectCard = ({ subject }: Props) => {
                     className='flex lg:col-span-2 lg:cols-start-2 flex-col items-stretch bg-base-200 p-4 rounded-lg shadow-md  h-[14rem] overflow-hidden overflow-y-auto
                 scrollbar-thin
             '
-                    onMouseEnter={toggleShowMouse}
-                    onMouseLeave={toggleHideMouse}
                 >
                     <div className='text-sm font-bold mt-0 pb-2 text-primary-focus'>Current Active Subjects:</div>
-                    <div className='text-xs flex flex-col gap-3'>
-                        <SubjectDetails />
-                        <SubjectDetails />
-                        <SubjectSwiper subjects={subjects} />
-
-                    </div>
+                    {subjects.map((subject) => (
+                        <div className='text-xs flex flex-col gap-3' key={subject.id}>
+                            <SubjectDetails subject={subject} />
+                        </div>
+                    ))}
+                    <SubjectDetails />
+                    {/* <SubjectSwiper subjects={subjects} /> */}
                 </div>
             </div>
 
