@@ -1,7 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { Noto_Sans_KR, Roboto, Montserrat } from 'next/font/google';
-import { Providers } from './Providers';
+import { Providers } from '../store/Providers';
 
 const inter = Inter({ subsets: ['latin'] });
 

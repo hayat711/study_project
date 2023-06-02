@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Formik, Form, Field, FormikState, FormikHelpers } from 'formik';
+import { Formik, Form, Field, FormikState, FormikHelpers, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import { Status } from '@/utils/types.dt';
 import axios, { AxiosError } from 'axios';
@@ -9,12 +9,7 @@ import ErrorField from '../error/ErrorField';
 
 type AssignmentValues = {
     title: string | null;
-    description?: string | null;
     deadline: Date | null;
-    createdAt?: Date | null;
-    updatedAt?: Date | null;
-    resource?: any | null;
-    progress?: number | null;
     status?: Status | null;
 };
 
@@ -25,37 +20,32 @@ const AddAssignment: React.FC = (props: Props) => {
     const [ApiResponse, setAPIResponse] = useState<any>('');
     const dispatch = useDispatch<Dispatch>();
 
+
     const createAssignmentValues: AssignmentValues = {
         title: '',
-        description: '',
         status: Status.NOT_STARTED,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        progress: 0,
         deadline: new Date(),
     };
 
     const createAssignmentSchema = Yup.object().shape({
         title: Yup.string().required('Title is required'),
-        description: Yup.string().required('Description is required'),
         status: Yup.string().required(
             'Status is required & should be either NOT_STARTED, IN_PROGRESS, COMPLETED, PENDING, or CANCELLED'
         ),
-        createdAt: Yup.date(),
-        updatedAt: Yup.date(),
-        progress: Yup.number(),
         deadline: Yup.date(),
     });
 
     const submitCreateAssignment = async (values: AssignmentValues, helpers: FormikHelpers<AssignmentValues>) => {
+
         try {
             const status = values.status?.toString() || '';
 
             console.log('here is assignment values --> ', values.title, values.status);
             const res = await axios.post(`/assignment/updateWeeklyAssignment`, {...values, status});
-            dispatch.assignment.loadAssignmentsAsync();
+            // dispatch.assignment.loadAssignmentsAsync();
 
             setAPIResponse(res.data);
+            
             helpers.resetForm();
         } catch (error) {
             if (error instanceof AxiosError) {
