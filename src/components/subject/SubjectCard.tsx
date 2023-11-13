@@ -5,7 +5,6 @@ import { XCircleIcon } from '@heroicons/react/24/outline';
 import { Subject } from '@/utils/types.dt';
 import SubjectDetails from './SubjectDetails';
 import AddSubject from './AddSubject';
-import SubjectSwiper from './SubjectSwiper';
 import subjects from '@/constants/subjects';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
@@ -16,7 +15,7 @@ type Props = {
 
 const SubjectCard = ({ subject }: Props) => {
     let subjectState = useSelector((state: RootState) => state.subject);
-    const { subjects } = subjectState;
+    // const { subjects } = subjectState;
 
     let assignmentState = useSelector((state: RootState) => state.assignment);
     const { assignments } = assignmentState;
@@ -99,7 +98,7 @@ const SubjectCard = ({ subject }: Props) => {
                 >
                     <div className='text-sm font-bold mt-0 pb-2 text-primary-focus'>Current Active Subjects:</div>
                     {subjects.map((subject) => (
-                        <div className='text-xs flex flex-col gap-3' key={subject.id}>
+                        <div className='text-xs flex flex-col gap-4' key={subject.id}>
                             <SubjectDetails subject={subject} />
                         </div>
                     ))}

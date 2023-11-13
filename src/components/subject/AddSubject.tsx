@@ -42,7 +42,6 @@ const AddSubject: React.FC = (props: Props) => {
             const status = values.status?.toString() || '';
             const res = await axios.post(`/subject/register`, {...values, status});
             // dispatch.subject.loadSubjectsAsync();
-
             setAPIResponse(res.data);
             helpers.resetForm();
         } catch (error) {

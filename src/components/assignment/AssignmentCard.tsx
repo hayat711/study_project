@@ -7,13 +7,14 @@ import TaskSwiper from './TaskSwiper';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { assignments } from '@/constants/assignments';
 
 const AssignmentCard = () => {
     const router = useRouter();
     
     let assignmentState = useSelector((state : RootState) => state.assignment);
 
-    const { assignments } = assignmentState;
+    // const { assignments } = assignmentState;
 
     // Demo task statistics
     const taskStats = {
