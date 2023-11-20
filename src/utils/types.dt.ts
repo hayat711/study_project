@@ -22,12 +22,13 @@ export interface Subject {
     resource: any;
     owner?: User;
     assignments?: Assignment[];
+    description?: string;
 }
 
 export interface Assignment {
     id: string;
     title: string;
-    deadline: Date;
+    deadline: string;
     progress?: number;
     status?: string;
     owner?: User;
