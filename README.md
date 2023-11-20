@@ -4,6 +4,20 @@
 ### Demo
 ![Main dashobard Demo](img/dashboard.gif)
 
+### Tech Stack
+
+
+- **Next.js** 
+
+- **TypeScript**
+
+- **Tailwind CSS & DaisyUI** 
+
+- **Redux with Rematch.js** 
+
+- **Chart.js** 
+
+
 #### Dark Mode
 ![Dark Mode](img/dashboard-dark.png)
 
