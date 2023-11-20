@@ -16,7 +16,7 @@
 - **Redux with Rematch.js** 
 
 - **Chart.js** 
-
+##### The Backend is not implemented.
 
 #### Dark Mode
 ![Dark Mode](img/dashboard-dark.png)
