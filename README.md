@@ -1,6 +1,6 @@
 ## Study Dashboard
 
-- live site: 
+- live site: https://dashboard-hyt.vercel.app/dashboard
 ### Demo
 ![Main dashobard Demo](img/dashboard.gif)
 
